@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-
 import { currencyFormatter } from '../util/formatting.js';
 import Button from './UI/Button.jsx';
 import CartContext from '../store/CartContext.jsx';
@@ -16,10 +15,10 @@ export default function MealItem({ meal }) {
     <li className="meal-item">
       <article>
         <img src={`https://food-order-app-api.vercel.app/public/${meal.image}`}
-          onError={(e) => {
-            e.currentTarget.src = noImage,
-              e.currentTarget.onerror = null
-          }}
+          // onError={(e) => {
+          //   e.currentTarget.src = noImage,
+          //     e.currentTarget.onerror = null
+          // }}
           alt={meal.name} />
         <div>
           <h3>{meal.name}</h3>
