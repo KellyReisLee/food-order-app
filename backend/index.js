@@ -2,11 +2,13 @@ import fs from 'node:fs/promises';
 
 import bodyParser from 'body-parser';
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use('/public', express.static(__dirname + '/public'))
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
