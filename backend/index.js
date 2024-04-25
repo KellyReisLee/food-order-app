@@ -6,7 +6,7 @@ import cors from 'cors';
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
+app.use(cors({ credentials: true, origin: "https://food-order-app-front-rosy.vercel.app/" }))
 app.use(bodyParser.json());
 app.use('/public', express.static(__dirname + '/public'))
 
