@@ -249,6 +249,26 @@ h1 {
   background-color: rgba(0, 0, 0, 0.55);
 }
 
+.error {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #ffc404;
+  color: #312c1d;
+
+}
+
+.error h2 {
+  font-size: 2rem;
+}
+
+.error p {
+  font-size: 1.7rem;
+  margin-top: 0;
+  font-weight: 600;
+}
+
+
 @keyframes fade-slide-up {
   from {
     opacity: 0;
