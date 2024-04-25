@@ -4,7 +4,7 @@
     "name": "Mac & Cheese",
     "price": "8.99",
     "description": "Creamy cheddar cheese mixed with perfectly cooked macaroni, topped with crispy breadcrumbs. A classic comfort food.",
-    "image": "public/images/mac-and-cheese.jpg"
+    "image": "/public/images/mac-and-cheese.jpg"
   },
   {
     "id": "m2",
