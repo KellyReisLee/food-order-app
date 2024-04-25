@@ -17,7 +17,7 @@ app.use(cors({
   methods: ["GET", "POST"]
 }));
 app.use(bodyParser.json());
-app.use('/public', express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 app.get('/meals', async (req, res) => {
   try {
