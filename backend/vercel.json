@@ -11,8 +11,5 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ],
-  "static": {
-    "/public": "https://food-order-app-api.vercel.app/public"
-  }
+  ]
 }
