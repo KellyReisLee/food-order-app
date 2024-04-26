@@ -24,15 +24,13 @@ app.use(bodyParser.json());
 app.use('/files', express.static(path.resolve(__dirname, 'public')));
 
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
-  res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
+app.options('*', (req, res) => {
+  // Defina os cabeçalhos CORS apropriados
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.status(200).send();
 });
-
 app.get('/meals', async (req, res) => {
   try {
     const meals = await fs.readFile(__dirname + '/data/available-meals.json', 'utf8'); // Corrija o caminho do arquivo
