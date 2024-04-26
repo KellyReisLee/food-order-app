@@ -47,7 +47,8 @@ export default function Checkout() {
     event.preventDefault();
 
     const fd = new FormData(event.target);
-    const customerData = Object.fromEntries(fd.entries()); // { email: test@example.com }
+    const customerData = Object.fromEntries(fd.entries());
+    console.log(customerData);
 
     sendRequest(
       JSON.stringify({
@@ -57,7 +58,10 @@ export default function Checkout() {
         },
       })
     );
+
+
   }
+
 
   let actions = (
     <>

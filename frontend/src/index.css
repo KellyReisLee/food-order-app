@@ -269,6 +269,15 @@ h1 {
 }
 
 
+.loading {
+  text-align: center;
+  background-color: #ffc404;
+  color: #2c2306;
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 @keyframes fade-slide-up {
   from {
     opacity: 0;
