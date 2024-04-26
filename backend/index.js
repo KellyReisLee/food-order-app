@@ -13,7 +13,7 @@ const app = express();
 
 app.use(cors({
   credentials: true,
-  origin: "https://food-order-app-front-rosy.vercel.app",
+  origin: "https://food-order-app-front-rosy.vercel.app/",
   methods: ["GET", "POST"]
 }));
 app.use(bodyParser.json());
