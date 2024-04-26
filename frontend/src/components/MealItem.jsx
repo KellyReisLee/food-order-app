@@ -14,7 +14,7 @@ export default function MealItem({ meal }) {
   return (
     <li className="meal-item">
       <article>
-        <img src={`https://food-order-app-api.vercel.app/public/${meal.image}`}
+        <img src={`https://food-order-app-api.vercel.app/files/${meal.image}`}
           // onError={(e) => {
           //   e.currentTarget.src = noImage,
           //     e.currentTarget.onerror = null

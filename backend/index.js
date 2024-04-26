@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import fs from 'fs/promises'; // Importe 'fs' de forma correta
-
+import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -19,7 +19,9 @@ app.use(cors({
   credentials: true // Permitir envio de cookies
 }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+
+
+app.use('/files', express.static(path.resolve(__dirname, 'public')));
 
 app.get('/meals', async (req, res) => {
   try {
