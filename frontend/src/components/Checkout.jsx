@@ -72,6 +72,7 @@ export default function Checkout() {
 
     fetch('https://food-order-app-api.vercel.app/orders', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json',
         // Se você precisar de autenticação, adicione os cabeçalhos de autorização aqui
