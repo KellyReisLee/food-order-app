@@ -26,7 +26,7 @@ app.use('/files', express.static(path.resolve(__dirname, 'public')));
 
 
 app.options('*', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'https://food-order-app-front-six.vercel.app/');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.status(200).send();
@@ -43,8 +43,9 @@ app.get('/meals', async (req, res) => {
 
 app.post('/orders', async (req, res) => {
   const orderData = req.body.order;
+  console.log(orderData);
 
-  if (orderData === null || orderData.items === null || orderData.items === []) {
+  if (orderData === null || orderData.items === null || orderData.items.lenght === 0) {
     return res
       .status(400)
       .json({ message: 'Missing data.' });
