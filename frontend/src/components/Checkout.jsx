@@ -28,6 +28,7 @@ export default function Checkout() {
     clearData
   } = useHttp('https://food-order-app-api.vercel.app/orders', requestConfig);
 
+  // {mode: "no-cors"}
   const cartTotal = cartCtx.items.reduce(
     (totalPrice, item) => totalPrice + item.quantity * item.price,
     0

@@ -24,6 +24,14 @@ app.use(bodyParser.json());
 app.use('/files', express.static(path.resolve(__dirname, 'public')));
 
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://food-order-app-front-rosy.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 app.get('/meals', async (req, res) => {
   try {
@@ -82,15 +90,6 @@ app.use((req, res) => {
   }
   res.status(404).json({ message: 'Não encontrado' });
 });
-
-
-app.use(cors({
-  origin: 'https://food-order-app-front-rosy.vercel.app',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  exposedHeaders: ['Content-Disposition'],
-  credentials: true // Permitir envio de cookies
-}));
 
 
 const PORT = process.env.PORT || 3000; // Use a porta fornecida pelo ambiente ou 3000 como padrão
