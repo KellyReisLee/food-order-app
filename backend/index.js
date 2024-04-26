@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use('/files', express.static(path.resolve(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://food-order-app-front-git-main-kellyreislees-projects.vercel.app/');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
