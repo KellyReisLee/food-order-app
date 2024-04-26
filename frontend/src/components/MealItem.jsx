@@ -15,10 +15,10 @@ export default function MealItem({ meal }) {
     <li className="meal-item">
       <article>
         <img src={`https://food-order-app-api.vercel.app/files/${meal.image}`}
-          // onError={(e) => {
-          //   e.currentTarget.src = noImage,
-          //     e.currentTarget.onerror = null
-          // }}
+          onError={(e) => {
+            e.currentTarget.src = noImage,
+              e.currentTarget.onerror = null
+          }}
           alt={meal.name} />
         <div>
           <h3>{meal.name}</h3>
