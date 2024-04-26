@@ -45,7 +45,7 @@ app.post('/orders', async (req, res) => {
   const orderData = req.body.order;
   console.log(orderData);
 
-  if (orderData === null || orderData.items === null || orderData.items.lenght === 0) {
+  if (!orderData) {
     return res
       .status(400)
       .json({ message: 'Missing data.' });
@@ -83,12 +83,12 @@ app.post('/orders', async (req, res) => {
 
 
 
-app.use((req, res) => {
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-  res.status(404).json({ message: 'Não encontrado' });
-});
+// app.use((req, res) => {
+//   if (req.method === 'OPTIONS') {
+//     return res.sendStatus(200);
+//   }
+//   res.status(404).json({ message: 'Não encontrado' });
+// });
 
 
 const PORT = process.env.PORT || 3000; // Use a porta fornecida pelo ambiente ou 3000 como padrão
