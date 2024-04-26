@@ -27,7 +27,6 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://food-order-app-front-rosy.vercel.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 });
