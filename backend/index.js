@@ -12,7 +12,7 @@ import cors from 'cors';
 const app = express();
 
 app.use(cors({
-  origin: '*',
+  origin: 'https://food-order-app-front-rosy.vercel.app',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   exposedHeaders: ['Content-Disposition'],
@@ -23,14 +23,14 @@ app.use(bodyParser.json());
 
 app.use('/files', express.static(path.resolve(__dirname, 'public')));
 
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
-//   res.setHeader('Access-Control-Allow-Credentials', 'true');
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://food-order-app-front-rosy.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 
 app.get('/meals', async (req, res) => {
