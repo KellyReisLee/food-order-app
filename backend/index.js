@@ -25,7 +25,6 @@ app.use('/files', express.static(path.resolve(__dirname, 'public')));
 
 
 app.options('*', (req, res) => {
-  // Defina os cabeçalhos CORS apropriados
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
