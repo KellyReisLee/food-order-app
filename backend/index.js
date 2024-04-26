@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use('/files', express.static(path.resolve(__dirname, 'public')));
 
 
+
 app.options('*', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
