@@ -12,9 +12,11 @@ import cors from 'cors';
 const app = express();
 
 app.use(cors({
-  credentials: true,
-  origin: "https://food-order-app-front-rosy.vercel.app/",
-  methods: ["GET", "POST"]
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Disposition'],
+  credentials: true // Permitir envio de cookies
 }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
