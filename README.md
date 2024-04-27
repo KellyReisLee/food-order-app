@@ -5,7 +5,7 @@ Project developed to exercise the use of Context API and useReducer, and also to
 <br/>
 
 <h3>Description: </h3>
-<h5  align ="center">Small food order website</h5>
+<h5>Small food order website</h5>
 
 - [Configuration and Setup](#configuration-and-setup)
 - [Key Features](#key-features)
