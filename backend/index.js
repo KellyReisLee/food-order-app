@@ -1,36 +1,49 @@
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import fs from 'fs/promises'; // Importe 'fs' de forma correta
+import fs from 'fs/promises';
+import { connect } from 'mongoose';
+import express from 'express';
+import cors from 'cors';
 import path from 'path';
+import dotenv from 'dotenv';
+import orderModel1 from './modules/orderModel.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-import bodyParser from 'body-parser';
-import express from 'express';
-import cors from 'cors';
+
 
 const app = express();
+dotenv.config();
 
 app.use(cors({
-  origin: 'https://food-order-app-front-six.vercel.app/',
+  origin: '*',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   exposedHeaders: ['Content-Disposition'],
   credentials: true // Permitir envio de cookies
 }));
-app.use(bodyParser.json());
+app.use(express.json());
+
+
+// Connection database.
+connect(process.env.MONGO_KEY).then(() => {
+  console.log('Database connected!!!');
+}).catch((error) => {
+  console.log(error);
+})
 
 
 app.use('/files', express.static(path.resolve(__dirname, 'public')));
 
 
-
 app.options('*', (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://food-order-app-front-six.vercel.app/');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.status(200).send();
 });
+
+// Getting Meals Data:
 app.get('/meals', async (req, res) => {
   try {
     const meals = await fs.readFile(__dirname + '/data/available-meals.json', 'utf8'); // Corrija o caminho do arquivo
@@ -41,57 +54,28 @@ app.get('/meals', async (req, res) => {
   }
 });
 
+
+// Sending Orders Data:
 app.post('/orders', async (req, res) => {
-  const orderData = req.body.order;
+  const orderData = req.body.order
+
   console.log(orderData);
 
   if (!orderData) {
-    return res
-      .status(400)
-      .json({ message: 'Missing data.' });
+    return res.status(500).json({ error: 'No data sent' })
   }
 
-  if (
-    orderData.customer.email === null ||
-    !orderData.customer.email.includes('@') ||
-    orderData.customer.name === null ||
-    orderData.customer.name.trim() === '' ||
-    orderData.customer.street === null ||
-    orderData.customer.street.trim() === '' ||
-    orderData.customer['postal-code'] === null ||
-    orderData.customer['postal-code'].trim() === '' ||
-    orderData.customer.city === null ||
-    orderData.customer.city.trim() === ''
-  ) {
-    return res.status(400).json({
-      message:
-        'Missing data: Email, name, street, postal code or city is missing.',
-    });
-  }
+  const newOrder = await orderModel1.create(orderData)
 
-  const newOrder = {
-    ...orderData,
-    id: (Math.random() * 1000).toString(),
-  };
-  const orders = await fs.readFile('./data/orders.json', 'utf8');
-  const allOrders = JSON.parse(orders);
-  allOrders.push(newOrder);
-  await fs.writeFile('./data/orders.json', JSON.stringify(allOrders));
-  res.status(201).json({ message: 'Order created!' });
+  if (!newOrder) {
+    return res.status(500).json({ error: 'Could not create new data.' })
+  }
+  res.status(201).json({ message: 'Created successfully!', newOrder })
 });
 
 
 
-
-// app.use((req, res) => {
-//   if (req.method === 'OPTIONS') {
-//     return res.sendStatus(200);
-//   }
-//   res.status(404).json({ message: 'Não encontrado' });
-// });
-
-
-const PORT = process.env.PORT || 3000; // Use a porta fornecida pelo ambiente ou 3000 como padrão
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor está ouvindo na porta ${PORT}`);
 });
