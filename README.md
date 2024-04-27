@@ -1,11 +1,11 @@
-<H1 align ="center" > Code-Blog - MERN Project Complete </h1>
+<H1 align ="center" > 
+FoodReact - Small food order MERN project </h1>
 <h5  align ="center"> 
-Fullstack open source blogging application made with MongoDB, Express, React & Nodejs (MERN). </h5>
+Project developed to exercise the use of Context API and useReducer, and also to train the deployment of a fullstack project. </h5>
 <br/>
 
 <h3>Description: </h3>
-<h5  align ="center"> 
-Blog created for developers that want to share information about Web development. </h5>
+<h5  align ="center">Small food order website</h5>
 
 - [Configuration and Setup](#configuration-and-setup)
 - [Key Features](#key-features)
