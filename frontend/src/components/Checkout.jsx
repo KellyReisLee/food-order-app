@@ -11,7 +11,6 @@ import Error from './Error.jsx';
 
 const requestConfig = {
   method: 'POST',
-  mode: 'no-cors',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -21,13 +20,15 @@ export default function Checkout() {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgressContext);
 
+
+
   const {
     data,
     isLoading: isSending,
     error,
     sendRequest,
     clearData
-  } = useHttp('https://food-order-app-api.vercel.app/orders', requestConfig);
+  } = useHttp('http://localhost:3000/orders', requestConfig);
 
   // {mode: "no-cors"}
   const cartTotal = cartCtx.items.reduce(
@@ -45,12 +46,12 @@ export default function Checkout() {
     clearData();
   }
 
+
   function handleSubmit(event) {
     event.preventDefault();
-
     const fd = new FormData(event.target);
     const customerData = Object.fromEntries(fd.entries());
-    console.log(customerData);
+
 
     sendRequest(
       JSON.stringify({
@@ -60,43 +61,7 @@ export default function Checkout() {
         },
       })
     );
-
-
   }
-
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-
-  //   const fd = new FormData(event.target);
-  //   const customerData = Object.fromEntries(fd.entries());
-
-  //   fetch('https://food-order-app-api.vercel.app/orders', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       // Se você precisar de autenticação, adicione os cabeçalhos de autorização aqui
-  //     },
-  //     body: JSON.stringify({
-  //       order: {
-  //         items: cartCtx.items,
-  //         customer: customerData,
-  //       },
-  //     }),
-  //   })
-  //     .then(response => {
-  //       if (!response.ok) {
-  //         throw new Error('Failed to send request.');
-  //       }
-  //       return response.json();
-  //     })
-  //     .then(data => {
-  //       console.log(data);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
 
 
 
@@ -142,7 +107,7 @@ export default function Checkout() {
         <Input label="E-Mail Address" type="email" id="email" />
         <Input label="Street" type="text" id="street" />
         <div className="control-row">
-          <Input label="Postal Code" type="text" id="postal-code" />
+          <Input label="Postal Code" type="text" id="postalCode" />
           <Input label="City" type="text" id="city" />
         </div>
 
