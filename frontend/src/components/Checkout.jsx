@@ -28,7 +28,7 @@ export default function Checkout() {
     error,
     sendRequest,
     clearData
-  } = useHttp('http://localhost:3000/orders', requestConfig);
+  } = useHttp('https://food-order-app-olive.vercel.app/orders', requestConfig);
 
   // {mode: "no-cors"}
   const cartTotal = cartCtx.items.reduce(
