@@ -16,7 +16,7 @@ dotenv.config();
 
 // Configuração do CORS
 app.use(cors({
-  origin: '*', // Permitindo todas as origens. Você pode restringir para um domínio específico se preferir.
+  origin: 'https://food-order-app-front-git-main-kellyreislees-projects.vercel.app', // Permitindo todas as origens. Você pode restringir para um domínio específico se preferir.
   methods: ['GET', 'POST'], // Permitindo apenas os métodos GET e POST
   allowedHeaders: ['Content-Type', 'Authorization'], // Permitindo os cabeçalhos Content-Type e Authorization
   exposedHeaders: ['Content-Disposition'], // Expondo cabeçalhos específicos
