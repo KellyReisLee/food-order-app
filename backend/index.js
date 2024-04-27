@@ -6,7 +6,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
-import orderModel1 from './modules/orderModel.js';
+import orderModel1 from './modules/orderModule.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
