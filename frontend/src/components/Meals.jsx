@@ -9,7 +9,7 @@ export default function Meals() {
     data: loadedMeals,
     isLoading,
     error,
-  } = useHttp('https://food-order-app-api.vercel.app/meals', requestConfig, []);
+  } = useHttp('https://food-order-app-olive.vercel.app/meals', requestConfig, []);
 
   if (isLoading) {
     return <p className="loading">Fetching meals...</p>;
